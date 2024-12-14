@@ -26,7 +26,7 @@ export default function MainSection() {
         alt="one" 
         width={245}                 
         height={282} 
-        layout="responsive"                   
+        quality={100}                   
           />
           
         
@@ -35,7 +35,7 @@ export default function MainSection() {
         alt="one" 
         width={245}                 
         height={282}
-        layout="responsive"                
+       quality={100}               
           /> 
         
             </div>
@@ -45,7 +45,7 @@ export default function MainSection() {
         alt="one" 
         width={500}                 
         height={213}
-        layout="responsive"                
+       quality={100}                
       /> 
          </div>
       
