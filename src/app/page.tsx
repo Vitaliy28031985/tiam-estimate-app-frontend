@@ -1,7 +1,7 @@
 import MainSection from './components/home/MainSection';
 import OrderAs from './components/home/OrderAs';
-import ButtonDelete from './components/Buttons/ButtonDelete';
-import ButtonPrint from './components/Buttons/ButtonPrint';
+import ButtonDelete from './UI/Buttons/ButtonDelete';
+import ButtonPrint from './UI/Buttons/ButtonPrint';
 
 
 export default function Home() {
