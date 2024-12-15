@@ -3,6 +3,8 @@ import OrderAs from './components/home/OrderAs';
 import Features from './components/home/Features';
 import ButtonDelete from './UI/Buttons/ButtonDelete';
 import ButtonPrint from './UI/Buttons/ButtonPrint';
+import Rewiews from './components/home/Rewiews';
+
 
 
 export default function Home() {
@@ -12,13 +14,14 @@ export default function Home() {
       <div className='w-[1249px] ml-auto mr-auto container'>
         <MainSection />
         <OrderAs />
-        <Features/>
+        <Features />
+        <Rewiews />
 
-      <ButtonDelete />
-    <ButtonPrint />   
-     </div>
-    
-     
+        <ButtonDelete />
+        <ButtonPrint />
+      </div>
+
+
     </div>
   );
 }
