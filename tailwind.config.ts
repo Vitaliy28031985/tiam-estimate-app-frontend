@@ -55,10 +55,10 @@ export default {
           0: 'rgb(239, 68, 68)'
         }
       },
-        backgroundImage: {
-        bgImg: 'url("/bg-img.png")'
+      //   backgroundImage: {
+      //   bgImg: 'url("/bg-img.png")'
         
-      },
+      // },
      
     },
   },

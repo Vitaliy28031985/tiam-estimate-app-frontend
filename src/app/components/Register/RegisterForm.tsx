@@ -1,7 +1,7 @@
 'use client';
-import RegisterInputs from "@/app/UI/Inputs/RegisterInput";
-import { title } from "process";
 import { useState } from "react";
+import RegisterInputs from "@/app/UI/Inputs/RegisterInput";
+import ButtonAth from "@/app/UI/Buttons/ButtonAuth";
 export default function RegisterForm() {
     const formPassword = /^(?=.*[a-zA-Z])(?=.*[*!#&])[A-Za-z0-9*!#&]{6,}$/;
     const formEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -24,22 +24,28 @@ export default function RegisterForm() {
         switch (name) {
            
             case 'name':
-            srtName(value);
+               srtName(value);
+               setIsEmptyName(false);
             break;
 
            case 'email':
-            setEmail(value);
+               setEmail(value);
+               setIsEmptyEmail(false)
             break;
+            
             case 'password':
                 setPassword(value);
+                setIsEmptyPassword(false);
             break;
              
             case 'repeatPassword':
-            setRepeatPassword(value);
+                setRepeatPassword(value);
+                setIsEmptyRepeatPassword(false);
             break;
             
              case 'phone':
-            setPhone(value);
+                setPhone(value);
+                setIsEmptyPhone(false);
             break;
         
            default:
@@ -101,7 +107,8 @@ export default function RegisterForm() {
                 message='Потрібно ввести телефон у наступному форматі: +380670000000'
                 value={phone} isError={isEmptyPhone} change={handleChange} />
             
-            <button type="submit">Зареєструватися</button>
+            <ButtonAth title="Зареєструватися"/>
+            
         </form>
     )
 }

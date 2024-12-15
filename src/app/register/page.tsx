@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Metadata } from "next";
 import fon from '../assets/bg-img.png'; 
-import RegisterForm from '../components/home/RegisrerForm';
+import RegisterForm from '../components/Register/RegisterForm';
 import ButtonGoogle from '../UI/Buttons/ButtonGoogle';
 export const metadata: Metadata = {
   title: "Реєстрація",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Register() {
     return (
         <div className="w-full bg-gray-5 pt-[125px] ">
-      <div className='w-[1249px] ml-auto mr-auto container'>
+      <div className='w-[1249px] ml-auto mr-auto container pb-7'>
                 
                 <div className='w-[501px] bg-white shadow-base px-6 py-10 rounded-[24px]'>
                     <p className='text-center text-3xl text-black font-medium mb-6'>Вхід
@@ -26,9 +26,10 @@ export default function Register() {
                  <Image
                 src={fon} 
                 alt="fon" 
-                width={709}                 
-                height={619} 
-                quality={100}                   
+                width={609}                 
+                height={679} 
+                quality={100}
+                priority      
                     /> 
            </div>
         </div>
