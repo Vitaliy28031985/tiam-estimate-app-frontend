@@ -1,17 +1,22 @@
 'use client';
 import RegisterInputs from "@/app/UI/Inputs/RegisterInput";
-import { useState } from "react";
+import { title } from "process";
+import { useEffect, useState } from "react";
 export default function RegisterForm() {
+    const formPassword = /^(?=.*[a-zA-Z])(?=.*[*!#&])[A-Za-z0-9*!#&]{6,}$/
+    const [isEmptyPassword, setIsEmptyPassword] = useState(false);
+
     const [password, setPassword] = useState('');
-    const handleChange = (e: any) => {
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
        const {name, value,} = e.currentTarget;
         switch (name) {
           
-           case 'email':
+        //    case 'email':
             // setEmail(value);
             // break;
             case 'password':
-            setPassword(value);
+                setPassword(value);
             break;
             
             // case 'emailTwo':
@@ -31,10 +36,25 @@ export default function RegisterForm() {
         } 
         
     } 
+
+   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+       e.preventDefault();
+       if (password === '' || password.length < 6 || !formPassword.test(password)) {
+           
+           setIsEmptyPassword(true);
+           return;
+       }
+       
+};
+
     return (
-        <form >
-            <RegisterInputs title='Пароль' name='passvord' type='text' placeholder='Very#5' value={password} change={() => handleChange}
-                message='Пароль має містити щонайменше 6 символів, включаючи літери та спеціальні знаки (, #, & тощо)' />
+        <form onSubmit={handleSubmit} >
+
+            <RegisterInputs title = 'Пароль' name = 'password' type = 'password' placeholder = 'Very#5' 
+                message='Пароль має містити щонайменше 6 символів, включаючи літери та спеціальні знаки (, #, & тощо)'
+                value={password} isError={isEmptyPassword} change={handleChange} />
+            
+            <button type="submit">Зареєструватися</button>
         </form>
     )
 }

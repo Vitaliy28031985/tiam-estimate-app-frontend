@@ -7,6 +7,6 @@ export interface InputProps {
     value?: string;
     isError?: boolean;
     showButton?: boolean;
-    change?: () => any;
+    change?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     
 }
