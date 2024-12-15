@@ -3,7 +3,12 @@ import OrderAs from './components/home/OrderAs';
 import Features from './components/home/Features';
 import ButtonDelete from './UI/Buttons/ButtonDelete';
 import ButtonPrint from './UI/Buttons/ButtonPrint';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Інструмент для створення кошторисів",
+};
 
 export default function Home() {
 
