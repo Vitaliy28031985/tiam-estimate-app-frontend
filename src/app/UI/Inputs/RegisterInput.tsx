@@ -4,7 +4,7 @@ import { InputProps } from "@/app/interfaces/inputInterface";
 import { useState } from 'react';
 
 export default function RegisterInputs({ title, name, type, placeholder, message,
-    value, isError = false, showButton = false, change }: InputProps) {
+    value, isError = false, change }: InputProps) {
     
     const [showPassword, setShowPassword] = useState("password")
     const changeTypePassword = () => {

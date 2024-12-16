@@ -40,6 +40,7 @@ export default {
           30: 'rgb(12, 74, 110)'
         },
         gray: {
+          0: 'rgb(240, 240, 240)',
           5: 'rgb(223, 223, 223)',
           10: 'rgb(245, 245, 245)',
           15: 'rgb(229, 231, 235)',
@@ -55,10 +56,10 @@ export default {
           0: 'rgb(239, 68, 68)'
         }
       },
-        backgroundImage: {
-        bgImg: 'url("/bg-img.png")'
+      //   backgroundImage: {
+      //   bgImg: 'url("/bg-img.png")'
         
-      },
+      // },
      
     },
   },
