@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image'
-import ButtonBlue from '../../UI/Buttons/ButtonBlue';
+import ButtonBlueLink from '@/app/UI/Buttons/ButtonBlueLink';
 import homeOne from '../../assets/home-1.png';
 import homeTwo from '../../assets/home-2.png';
 import homeTree from '../../assets/home-3.png'
@@ -16,7 +16,7 @@ export default function MainSection() {
             З нашим застосунком ви зможете швидко керувати витратами,
             налаштовувати шаблони та мати доступ до кошторисів – просто і безкоштовно!
           </p>
-        <ButtonBlue title='Зареєструватися' />  
+        <ButtonBlueLink title='Зареєструватися' link='/register' />  
         </div>
         <div className='w-full  p-0'>
         <div className='grid grid-cols-[2fr,2fr] gap-3'>

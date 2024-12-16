@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Register() {
     return (
-        <div className="w-full bg-gray-5 pt-[125px] relative overflow-hidden">
+        <div className="w-full bg-gray-0 pt-[125px] relative overflow-hidden">
       <div className='w-[1249px] ml-auto mr-auto container pb-7'>
                 
                 <div className='w-[501px] bg-white shadow-base px-6 py-10 rounded-[24px]'>
