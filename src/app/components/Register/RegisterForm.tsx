@@ -14,7 +14,7 @@ export default function RegisterForm() {
     const [isEmptyPhone, setIsEmptyPhone] = useState(false);
 
     const [password, setPassword] = useState('');
-    const [name, srtName] = useState('');
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const [phone, setPhone] = useState('');
@@ -24,7 +24,7 @@ export default function RegisterForm() {
         switch (name) {
            
             case 'name':
-               srtName(value);
+               setName(value);
                setIsEmptyName(false);
             break;
 
@@ -56,32 +56,44 @@ export default function RegisterForm() {
 
    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
        e.preventDefault();
+       if (
+           password === '' || password.length < 6 || !formPassword.test(password) ||
+           name === '' || email === '' || !formEmail.test(email) || repeatPassword !== password
+           || phone === '' || !formPhone.test(phone)
+       ) {
        if (password === '' || password.length < 6 || !formPassword.test(password)
        ) {  
            setIsEmptyPassword(true);
-           return;
        }
 
        if (name === '') {
            setIsEmptyName(true);
-           return;
        }
 
        if (email === '' || !formEmail.test(email)) {
            setIsEmptyEmail(true);
-           return;
        }
 
-       if (repeatPassword !== password) {
+       if (repeatPassword !== password || repeatPassword === '') {
            setIsEmptyRepeatPassword(true);
-           return;
        }
 
        if (phone === '' || !formPhone.test(phone)) {
            setIsEmptyPhone(true);
+           }
            return;
        }
+
+       const registerData = {
+          name, email, password, phone 
+       }
        
+       console.log(registerData);
+       setName('');
+       setEmail('');
+       setPassword('');
+       setRepeatPassword('');
+       setPhone('');
 };
 
     return (

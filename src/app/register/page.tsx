@@ -14,7 +14,7 @@ export default function Register() {
       <div className='w-[1249px] ml-auto mr-auto container pb-7'>
                 
                 <div className='w-[501px] bg-white shadow-base px-6 py-10 rounded-[24px]'>
-                    <p className='text-center text-3xl text-black font-medium mb-6'>Вхід
+                    <p className='text-center text-3xl text-black font-normal mb-6'>Вхід
                     <span className='font-bold text-4xl ml-6'>Реєстрація</span></p>
                     
                     <ButtonGoogle />
