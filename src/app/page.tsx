@@ -20,6 +20,7 @@ export default function Home() {
         <MainSection />
         <OrderAs />
         <Features />
+        <Rewiews/>
       <ButtonDelete />
     <ButtonPrint />   
       </div>
