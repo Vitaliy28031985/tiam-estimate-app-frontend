@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, A11y, Virtual, Keyboard, Mousewheel } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import "../../styles/Review.css";
-import { to } from '../../../../.next/static/chunks/[turbopack]_browser_dev_hmr-client_d6d8d4._';
 
 interface Rewiews {
     id: number;
