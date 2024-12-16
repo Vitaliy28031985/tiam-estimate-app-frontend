@@ -1,6 +1,7 @@
 'use client';
 import { useState } from "react";
 import RegisterInputs from "@/app/UI/Inputs/RegisterInput";
+import Checkbox from "@/app/UI/Inputs/Checkbox";
 import ButtonAth from "@/app/UI/Buttons/ButtonAuth";
 export default function RegisterForm() {
     const formPassword = /^(?=.*[a-zA-Z])(?=.*[*!#&])[A-Za-z0-9*!#&]{6,}$/;
@@ -18,6 +19,7 @@ export default function RegisterForm() {
     const [email, setEmail] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const [phone, setPhone] = useState('');
+    const [role, setRole] = useState('customer');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
        const {name, value,} = e.currentTarget;
@@ -43,9 +45,13 @@ export default function RegisterForm() {
                 setIsEmptyRepeatPassword(false);
             break;
             
-             case 'phone':
+            case 'phone':
                 setPhone(value);
                 setIsEmptyPhone(false);
+                break;
+            
+            case 'role':
+                setRole(value);
             break;
         
            default:
@@ -85,7 +91,7 @@ export default function RegisterForm() {
        }
 
        const registerData = {
-          name, email, password, phone 
+          name, email, password, phone, role
        }
        
        console.log(registerData);
@@ -94,6 +100,7 @@ export default function RegisterForm() {
        setPassword('');
        setRepeatPassword('');
        setPhone('');
+       setRole('');
 };
 
     return (
@@ -119,10 +126,17 @@ export default function RegisterForm() {
                 message='Потрібно ввести телефон у наступному форматі: +380670000000'
                 value={phone} isError={isEmptyPhone} change={handleChange} />
             
+            <div className="flex gap-3 mt-5">
+           
+                <h5 className="ml-6 text-base font-normal text-black">Роль:</h5>
+                <div className="flex gap-10">
+            <Checkbox title="Замовник" type="radio" name="role" value="customer" data={role} changeCheckbox={handleChange} />
+            <Checkbox title="Виконавець" type="radio" name="role" value="executor" data={role} changeCheckbox={handleChange} />
+                </div>
+            </div>
+
             <ButtonAth title="Зареєструватися"/>
             
         </form>
     )
 }
-
-//CheckIcon
