@@ -22,12 +22,6 @@ export default function Home() {
         <Features />
       <ButtonDelete />
     <ButtonPrint />   
-     </div>
-    
-        <Rewiews />
-
-        <ButtonDelete />
-        <ButtonPrint />
       </div>
 
 
