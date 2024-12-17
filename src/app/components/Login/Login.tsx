@@ -96,12 +96,10 @@ export default function Login() {
            const response = await loginApi(data);
            if (response?.data?.token) {
           localStorage.setItem('token', response.data.token);
-          console.log('Token saved to localStorage:', response.data.token);
            }
             if (response?.data?.refreshToken) {
-      localStorage.setItem('refreshToken', response.data.refreshToken);
-              console.log('Token saved to localStorage:', response.data.token);
-              router.push('/')
+               localStorage.setItem('refreshToken', response.data.refreshToken); 
+              router.push('/private');
     }
            reset();
          } catch (error) {

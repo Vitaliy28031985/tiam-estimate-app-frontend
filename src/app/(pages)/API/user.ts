@@ -3,9 +3,8 @@ import BASE_URL from './base';
 import { User } from '@/app/interfaces/user';
 
 export async function getCurrentUser(): Promise<User | null> {
-  const token = localStorage.getItem('token');
-
   
+  const token = localStorage.getItem('token');
   if (!token) {
     // console.error('Token not found in localStorage');
     return null;
@@ -19,14 +18,10 @@ export async function getCurrentUser(): Promise<User | null> {
         'Authorization': `Bearer ${token}`
       }
     });
-
- 
     const userData: User = response.data;
-
-    
     return userData;
   } catch (error) {
-    console.error('Error during request:', error);
+    // console.error('Error during request:', error);
     return null;
   }
 }
