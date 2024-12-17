@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, A11y, Virtual, Keyboard, Mousewheel } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import "../../styles/Review.css";
 import RatingStars from "@/app/UI/RatingStars/RaitingStars";
@@ -76,41 +75,20 @@ export default function Reviews() {
             <h2 className='text-5xl font-alternates font-bold text-black mb-[60px] w-[427px]'>Що говорять про нас люди</h2>
 
             <Swiper
-                modules={[Pagination, A11y, Virtual, Keyboard, Mousewheel]}
-                pagination={{ clickable: true }}
                 allowTouchMove={true}
-                loop={false}
-                breakpoints={
-                    {
-                        0: {
-                            slidesPerView: 1,
-                            spaceBetween: 10,
-                        },
-                        768: {
-                            slidesPerView: 2,
-                            spaceBetween: 10,
-                        },
-                        1024: {
-                            slidesPerView: 3,
-                            spaceBetween: 10,
-                        },
-                        1440: {
-                            slidesPerView: 3,
-                            spaceBetween: 12
-                        }
-
-                    }}
+                spaceBetween={24}
+                slidesPerView={reviewPerPage}
                 onSlideChange={(swiper) => handlePageChange(swiper.activeIndex)}
             >
                 {currentReviews.map((review) => (
                     <SwiperSlide key={review._id} className="bg-blue-5 rounded-3xl">
                         <div className='flex  flex-col'>
-                            <div className='flex justify-between w-full mb-3'>
+                            <div className='flex justify-between mb-3'>
                                 <p className='text-2xl text-black font-semibold'>{review.name}</p>
                                 <RatingStars rating={review.rating} />
                             </div>
                             <p className="text-xs text-[#A3A3A3]  mb-3" >{formatDate(review.createdAt)}</p>
-                            <p className='text-xl text-black '>{review.comment}</p>
+                            <p className='review-comment text-xl text-black '>{review.comment}</p>
                         </div>
                     </SwiperSlide>
                 ))}
