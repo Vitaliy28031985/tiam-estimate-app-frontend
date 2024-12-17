@@ -5,8 +5,8 @@ import fon from '../../assets/bg-img.png';
 import RegisterForm from '../../components/Register/RegisterForm';
 import ButtonGoogle from '../../UI/Buttons/ButtonGoogle';
 export const metadata: Metadata = {
-  title: "Реєстрація",
-  description: "Сторінка реєстрації",
+  title: "Увійти",
+  description: "Сторінка входу",
 };
 
 export default function Register() {

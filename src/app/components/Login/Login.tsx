@@ -113,17 +113,17 @@ export default function Login() {
         : `w-[453px] h-[49px] px-4 py-3 rounded-3xl border border-gray-15 justify-start items-center inline-flex mb-3 text-gray-20 text-sm font-normal focus:border-blue-20 focus:outline-none`}
         {...register("password")} placeholder="Very#5" />
         {errors?.password && (<div className='flex items-center'><ExclamationCircleIcon className='size-5 text-red-0 mr-3 mb-3' />
-                      <p className="text-red-500 text-xs font-normal">{errors.password.message}</p></div>)}
+                      <p className="w-5/6 text-red-500 text-xs font-normal">{errors.password.message}</p></div>)}
             <button
             type="button"
             onClick={togglePasswordVisibility}
             className="absolute top-12 right-5"
           >
                       {passwordVisible ? (
-                          <EyeIcon  className={errors?.password ?  `size-6 text-red-0` : `size-6 text-blue-20`} />
-                      ) : (
-                          <EyeSlashIcon  className={errors?.password ?  `size-6 text-red-0` : `size-6 text-blue-20`} />     
-                        )}
+                      <EyeSlashIcon className={errors?.password ? `size-6 text-red-0` : `size-6 text-blue-20`} /> 
+                    ) : (
+                       <EyeIcon className={errors?.password ? `size-6 text-red-0` : `size-6 text-blue-20`} />  
+                    )}
           </button>
               </div>
 
