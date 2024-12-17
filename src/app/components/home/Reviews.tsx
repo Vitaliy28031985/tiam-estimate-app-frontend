@@ -7,6 +7,8 @@ import "../../styles/Review.css";
 import RatingStars from "@/app/UI/RatingStars/RaitingStars";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import formatDate from '../../utils/formatDate';
+import Image from "next/image";
+import WorkerFoto from '../../assets/worker.png';
 
 
 interface Reviews {
@@ -14,7 +16,8 @@ interface Reviews {
     name: string;
     comment: string;
     rating: number;
-    createdAt: string
+    createdAt: string;
+    avatar: string;
 }
 
 export default function Reviews() {
@@ -49,7 +52,7 @@ export default function Reviews() {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const response = await fetch("https://team-estimate-app-backend.onrender.com/api/reviews");
+                const response = await fetch("https://new-team-estimate-app-backend.onrender.com/api/reviews");
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -84,7 +87,16 @@ export default function Reviews() {
                     <SwiperSlide key={review._id} className="bg-blue-5 rounded-3xl">
                         <div className='flex  flex-col'>
                             <div className='flex justify-between mb-3'>
-                                <p className='text-2xl text-black font-semibold'>{review.name}</p>
+                                <div>
+                                    <Image
+                                        src={review.avatar ? review.avatar : WorkerFoto}
+                                        alt={review.name}
+                                        width={32}
+                                        height={32}
+                                        className='rounded-full'
+                                    />
+                                    <p className='text-2xl text-black font-semibold'>{review.name}</p>
+                                </div>
                                 <RatingStars rating={review.rating} />
                             </div>
                             <p className="text-xs text-[#A3A3A3]  mb-3" >{formatDate(review.createdAt)}</p>
