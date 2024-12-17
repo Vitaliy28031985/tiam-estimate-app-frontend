@@ -1,7 +1,8 @@
 "use client"; 
 import { ExclamationCircleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import React, { useState } from "react";
-import { useForm, Resolver } from "react-hook-form"; 
+import { useForm, Resolver } from "react-hook-form";
+import { loginApi } from '@/app/API/auth'; 
 
 type FormValues = {
   email: string;
@@ -86,9 +87,21 @@ export default function Login() {
   });
     
     
-    const onSubmit = handleSubmit((data) => {
-        console.log(data) 
-        reset();
+    const onSubmit = handleSubmit( async(data) => {
+         try {
+           const response = await loginApi(data);
+           if (response?.data?.token) {
+          localStorage.setItem('token', response.data.token);
+          console.log('Token saved to localStorage:', response.data.token);
+           }
+            if (response?.data?.refreshToken) {
+      localStorage.setItem('refreshToken', response.data.refreshToken);
+      console.log('Token saved to localStorage:', response.data.token);
+    }
+           reset();
+         } catch (error) {
+           console.error('Login failed:', error);
+         }
     });
 
   return (
@@ -113,17 +126,17 @@ export default function Login() {
         : `w-[453px] h-[49px] px-4 py-3 rounded-3xl border border-gray-15 justify-start items-center inline-flex mb-3 text-gray-20 text-sm font-normal focus:border-blue-20 focus:outline-none`}
         {...register("password")} placeholder="Very#5" />
         {errors?.password && (<div className='flex items-center'><ExclamationCircleIcon className='size-5 text-red-0 mr-3 mb-3' />
-                      <p className="text-red-500 text-xs font-normal">{errors.password.message}</p></div>)}
+                      <p className="w-5/6 text-red-500 text-xs font-normal">{errors.password.message}</p></div>)}
             <button
             type="button"
             onClick={togglePasswordVisibility}
             className="absolute top-12 right-5"
           >
                       {passwordVisible ? (
-                          <EyeIcon  className={errors?.password ?  `size-6 text-red-0` : `size-6 text-blue-20`} />
-                      ) : (
-                          <EyeSlashIcon  className={errors?.password ?  `size-6 text-red-0` : `size-6 text-blue-20`} />     
-                        )}
+                      <EyeSlashIcon className={errors?.password ? `size-6 text-red-0` : `size-6 text-blue-20`} /> 
+                    ) : (
+                       <EyeIcon className={errors?.password ? `size-6 text-red-0` : `size-6 text-blue-20`} />  
+                    )}
           </button>
               </div>
 
