@@ -198,7 +198,7 @@ export default function RegisterForm() {
         <form onSubmit={onSubmit}>
 
              <div>
-                <label className="inline-block text-bas text-black font-normal mb-3">Ім'я*</label>
+                <label className="inline-block text-bas text-black font-normal mb-3">Ім&apos;я*</label>
                 <input
                     className={errors?.name ? `w-[453px] h-[49px] px-4 py-3 rounded-3xl border border-red-0 justify-start items-center inline-flex mb-3 text-red-0 text-sm font-normal focus:border-red-0 focus:outline-none`
                         : `w-[453px] h-[49px] px-4 py-3 rounded-3xl border border-gray-15 justify-start items-center inline-flex mb-3 text-gray-20 text-sm font-normal focus:border-blue-20 focus:outline-none`}
