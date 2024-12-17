@@ -1,83 +1,28 @@
 'use client'
+
 import { useEffect, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, A11y, Virtual, Keyboard, Mousewheel } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import "../../styles/Review.css";
+import RatingStars from "@/app/UI/RatingStars/RaitingStars";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import formatDate from '../../utils/formatDate';
 
-interface Rewiews {
-    id: number;
-    name?: string;
-    text?: string;
-    rating?: number;
+
+interface Reviews {
+    _id: number;
+    name: string;
+    comment: string;
+    rating: number;
+    createdAt: string
 }
 
-const rewiews: Rewiews[] = [
-    {
-        id: 1,
-        name: 'Іван Іванов',
-        rating: 4,
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, voluptate.'
-    },
-    {
-        id: 2,
-        name: 'Іван Іванов',
-        rating: 3,
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, voluptate.'
-    },
-    {
-        id: 3,
-        name: 'Іван Іванов',
-        rating: 5,
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, voluptate.'
-    },
-    {
-        id: 4,
-        name: 'Іван Іванов',
-        rating: 2,
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, voluptate.'
-    },
-    {
-        id: 5,
-        name: 'Іван Іванов',
-        rating: 1,
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, voluptate.'
-    },
-    {
-        id: 6,
-        name: 'Іван Іванов',
-        rating: 4,
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, voluptate.'
-    },
-    {
-        id: 7,
-        name: 'Іван Іванов',
-        rating: 3,
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, voluptate.'
-    },
-    {
-        id: 8,
-        name: 'Іван Іванов',
-        rating: 5,
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, voluptate.'
-    },
-    {
-        id: 9,
-        name: 'Іван Іванов',
-        rating: 2,
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, voluptate.'
-    },
-    {
-        id: 10,
-        name: 'Іван Іванов',
-        rating: 1,
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, voluptate.'
-    }
-]
-export default function Rewiews() {
+export default function Reviews() {
     const [currentPage, setCurrentPage] = useState<number>(0);
-    const [rewiewPerPage, setRewiewPerPage] = useState<number>(3);
-    const totalPages = Math.ceil(rewiews.length / rewiewPerPage);
+    const [reviewPerPage, setReviewPerPage] = useState<number>(3);
+    const [reviews, setReviews] = useState<Reviews[]>([]);
+    const totalPages = Math.ceil(reviews.length / reviewPerPage);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -94,15 +39,29 @@ export default function Rewiews() {
     const updateRevewsPerPage = () => {
         const width = window.innerWidth;
         if (width < 768) {
-            setRewiewPerPage(1);
+            setReviewPerPage(1);
         } else if (width < 1024) {
-            setRewiewPerPage(2);
+            setReviewPerPage(2);
         } else {
-            setRewiewPerPage(3);
+            setReviewPerPage(3);
         }
     }
 
     useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+                const response = await fetch("https://team-estimate-app-backend.onrender.com/api/reviews");
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data: Reviews[] = await response.json();
+                setReviews(data);
+            } catch (error) {
+                console.error("Error fetching reviews:", error);
+            }
+        }
+
+        fetchReviews();
         updateRevewsPerPage();
         window.addEventListener('resize', updateRevewsPerPage);
         return () => {
@@ -110,7 +69,7 @@ export default function Rewiews() {
         };
     }, []);
 
-    const currentRewiews = rewiews.slice(currentPage * rewiewPerPage, (currentPage + 1) * rewiewPerPage);
+    const currentReviews = reviews.slice(currentPage * reviewPerPage, (currentPage + 1) * reviewPerPage);
 
     return (
         <section>
@@ -143,14 +102,15 @@ export default function Rewiews() {
                     }}
                 onSlideChange={(swiper) => handlePageChange(swiper.activeIndex)}
             >
-                {currentRewiews.map((rewiew) => (
-                    <SwiperSlide key={rewiew.id}>
-                        <div className='bg-blue-5 rounded-3xl p-10 mb-10'>
-                            <div className='flex items-center gap-4'>
-                                <p className='text-2xl text-blue-20 font-semibold'>{rewiew.rating}</p>
-                                <p className='text-2xl text-blue-20 font-semibold'>{rewiew.name}</p>
+                {currentReviews.map((review) => (
+                    <SwiperSlide key={review._id} className="bg-blue-5 rounded-3xl">
+                        <div className='flex  flex-col'>
+                            <div className='flex justify-between w-full mb-3'>
+                                <p className='text-2xl text-black font-semibold'>{review.name}</p>
+                                <RatingStars rating={review.rating} />
                             </div>
-                            <p className='text-2xl text-blue-20 font-semibold'>{rewiew.text}</p>
+                            <p className="text-xs text-[#A3A3A3]  mb-3" >{formatDate(review.createdAt)}</p>
+                            <p className='text-xl text-black '>{review.comment}</p>
                         </div>
                     </SwiperSlide>
                 ))}
@@ -161,9 +121,7 @@ export default function Rewiews() {
                     disabled={currentPage === 0}
                     onClick={handlePrevPage}
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                    </svg>
+                    <FaChevronLeft />
                 </button>
                 <div className='pagination'>
                     {Array.from({ length: totalPages }).map((_, index) => (
@@ -181,9 +139,7 @@ export default function Rewiews() {
                     disabled={currentPage === totalPages - 1}
                     onClick={handleNextPage}
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
+                    <FaChevronRight />
                 </button>
             </div>
 

@@ -3,8 +3,8 @@ import OrderAs from './components/home/OrderAs';
 import Features from './components/home/Features';
 import ButtonDelete from './UI/Buttons/ButtonDelete';
 import ButtonPrint from './UI/Buttons/ButtonPrint';
-import Rewiews from './components/home/Rewiews';
 import { Metadata } from 'next';
+import Reviews from './components/home/Reviews';
 
 
 export const metadata: Metadata = {
@@ -20,9 +20,9 @@ export default function Home() {
         <MainSection />
         <OrderAs />
         <Features />
-        <Rewiews/>
-      <ButtonDelete />
-    <ButtonPrint />   
+        <Reviews />
+        <ButtonDelete />
+        <ButtonPrint />
       </div>
 
 

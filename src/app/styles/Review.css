@@ -1,31 +1,38 @@
-.review-carousel{
+.review-carousel {
     text-align: center;
 }
 
-.review-slide{
+.swiper-slide {
+    height: 193px;
+    padding: 25px 30px;
+    background-color: #DFDFDF;
+    margin-bottom: 40px;
+}
+
+.review-slide {
     padding: 24px 30px;
 }
 
-.pagination{
+.pagination {
     display: flex;
     justify-content: center;
     gap: 4px;
-   
-   
+
+
 }
 
-.pagination button{
+.pagination button {
     display: flex;
     width: 32px;
     height: 32px;
     justify-content: center;
     align-items: center;
     margin: 0;
-    border: 1px solid black;
-    
+
+
 }
 
-.pagination button.active{
-    background-color: black;
-    color: white;
+.pagination button.active {
+    background-color: white;
+
 }
