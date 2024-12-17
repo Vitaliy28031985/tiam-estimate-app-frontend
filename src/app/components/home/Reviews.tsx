@@ -87,7 +87,7 @@ export default function Reviews() {
                     <SwiperSlide key={review._id} className="bg-blue-5 rounded-3xl">
                         <div className='flex  flex-col'>
                             <div className='flex justify-between mb-3'>
-                                <div>
+                                <div className="flex gap-2 items-center justify-center">
                                     <Image
                                         src={review.avatar ? review.avatar : WorkerFoto}
                                         alt={review.name}
