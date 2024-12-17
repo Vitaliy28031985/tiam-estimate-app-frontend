@@ -3,6 +3,8 @@ import { useState } from "react";
 import { ExclamationCircleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { useForm, Resolver } from "react-hook-form"; 
 import Checkbox from "@/app/UI/Inputs/Checkbox";
+import { registerApi } from "@/app/API/auth";
+
 
 type FormValues = {
     name: string;
@@ -178,10 +180,17 @@ export default function RegisterForm() {
       });
         
         
-    const onSubmit = handleSubmit((data) => {
-            const registerData = {...data, role}
-            console.log(registerData) 
-            reset();
+    const onSubmit = handleSubmit(async (data) => {
+           const registerData = { ...data, role };
+
+  try {
+    const response = await registerApi(registerData);
+    console.log('Registration successful:', response);
+    reset();
+  } catch (error) {
+    console.error('Registration failed:', error);
+  }
+
         });
 
     return (

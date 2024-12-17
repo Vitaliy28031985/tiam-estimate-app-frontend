@@ -5,7 +5,7 @@ import fon from '../../assets/bg-img.png';
 import RegisterForm from '../../components/Register/RegisterForm';
 import ButtonGoogle from '../../UI/Buttons/ButtonGoogle';
 export const metadata: Metadata = {
-  title: "Увійти",
+  title: "Реєстрація",
   description: "Сторінка входу",
 };
 

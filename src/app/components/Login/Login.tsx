@@ -1,7 +1,8 @@
 "use client"; 
 import { ExclamationCircleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import React, { useState } from "react";
-import { useForm, Resolver } from "react-hook-form"; 
+import { useForm, Resolver } from "react-hook-form";
+import { loginApi } from '@/app/API/auth'; 
 
 type FormValues = {
   email: string;
@@ -86,9 +87,21 @@ export default function Login() {
   });
     
     
-    const onSubmit = handleSubmit((data) => {
-        console.log(data) 
-        reset();
+    const onSubmit = handleSubmit( async(data) => {
+         try {
+           const response = await loginApi(data);
+           if (response?.data?.token) {
+          localStorage.setItem('token', response.data.token);
+          console.log('Token saved to localStorage:', response.data.token);
+           }
+            if (response?.data?.refreshToken) {
+      localStorage.setItem('refreshToken', response.data.refreshToken);
+      console.log('Token saved to localStorage:', response.data.token);
+    }
+           reset();
+         } catch (error) {
+           console.error('Login failed:', error);
+         }
     });
 
   return (
