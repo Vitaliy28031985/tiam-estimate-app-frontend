@@ -24,7 +24,8 @@ export default function RootLayout({
             }
         } 
         catch (error) {
-              throw new Error('Token not found in localStorage');
+          console.error('Token not found in localStorage', error)
+          throw new Error('Token not found in localStorage');
      
         }
     };

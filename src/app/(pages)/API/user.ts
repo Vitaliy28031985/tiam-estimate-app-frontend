@@ -21,7 +21,7 @@ export async function getCurrentUser(): Promise<User | null> {
     const userData: User = response.data;
     return userData;
   } catch (error) {
-    // console.error('Error during request:', error);
+    console.error('Error during request:', error);
     return null;
   }
 }

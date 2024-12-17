@@ -20,6 +20,7 @@ export default function Header() {
             setUser(userData);
         } 
         catch (error) {
+            console.error('Token not found in localStorage', error)
               throw new Error('Token not found in localStorage');
      
         }
