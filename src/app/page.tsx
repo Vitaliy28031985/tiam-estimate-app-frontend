@@ -9,13 +9,13 @@ import Reviews from './components/home/Reviews';
 
 export const metadata: Metadata = {
   title: "Home",
-  description: "Інструмент для створення кошторисів",
+  description: "Головна сторінка інструменту для створення кошторисів Estimate app",
 };
 
 export default function Home() {
 
   return (
-    <div className="bg-gray-0">
+    <div className="bg-gray-0 pt-20">
       <div className='w-[1249px] ml-auto mr-auto container'>
         <MainSection />
         <OrderAs />
