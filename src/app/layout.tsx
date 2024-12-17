@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import GuestHeader from "./components/Header/GuestHeader";
 import "./globals.css";
 
 
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body>
+        <GuestHeader/>
         {children}
       </body>
     </html>

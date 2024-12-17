@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function Home() {
 
   return (
-    <div className="bg-gray-0">
+    <div className="bg-gray-0 pt-20">
       <div className='w-[1249px] ml-auto mr-auto container'>
         <MainSection />
         <OrderAs />

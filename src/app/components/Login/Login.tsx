@@ -2,7 +2,9 @@
 import { ExclamationCircleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import React, { useState } from "react";
 import { useForm, Resolver } from "react-hook-form";
-import { loginApi } from '@/app/API/auth'; 
+import { loginApi } from '@/app/(pages)/API/auth'; 
+
+import { useRouter } from 'next/navigation'
 
 type FormValues = {
   email: string;
@@ -72,7 +74,9 @@ const resolver: Resolver<FormValues> = async (values) => {
 
 export default function Login() {
     const [passwordVisible, setPasswordVisible] = useState(false);
-    
+  
+   const router = useRouter()
+  
  const togglePasswordVisibility = () => {
     setPasswordVisible((prev) => !prev);
   };
@@ -96,13 +100,16 @@ export default function Login() {
            }
             if (response?.data?.refreshToken) {
       localStorage.setItem('refreshToken', response.data.refreshToken);
-      console.log('Token saved to localStorage:', response.data.token);
+              console.log('Token saved to localStorage:', response.data.token);
+              router.push('/')
     }
            reset();
          } catch (error) {
            console.error('Login failed:', error);
          }
     });
+ 
+  
 
   return (
     <div>
