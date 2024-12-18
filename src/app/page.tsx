@@ -5,6 +5,7 @@ import ButtonDelete from './UI/Buttons/ButtonDelete';
 import ButtonPrint from './UI/Buttons/ButtonPrint';
 import { Metadata } from 'next';
 import Reviews from './components/home/Reviews';
+import IsLoginProvider from './Context/isLoginProvider';
 
 
 export const metadata: Metadata = {

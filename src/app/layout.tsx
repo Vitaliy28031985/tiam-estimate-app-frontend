@@ -2,11 +2,10 @@
 import { useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
-import { getCurrentUser } from "./(pages)/API/user";
 import GuestHeader from "./components/Header/GuestHeader";
 import Footer from "./components/Footer/Footer";
+import { isLoginUser } from "./(pages)/api/user";
 import "./globals.css";
-
 
 // export const metadata: Metadata = {
 //   title: "Estimate app",
@@ -18,6 +17,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   const pathname = usePathname();
   const isPrivateRoute = pathname?.startsWith('/private');
 
@@ -25,18 +25,13 @@ export default function RootLayout({
     
       
     useEffect(() => {
-    const fetchUser = async () => {
-        try {
-            const userData = await getCurrentUser();
-            if (userData) {
-             router.push('/private');    
-            }
+      const fetchUser = async () => {
+      const isLogin = await isLoginUser();
+        if (isLogin) {
+          await router.push('/private');
+         
         } 
-        catch (error) {
-          console.error('Token not found in localStorage', error)
-              throw new Error('Token not found in localStorage');
      
-        }
     };
         fetchUser();
     
@@ -44,10 +39,10 @@ export default function RootLayout({
 
   return (
     <html lang="uk">
-      <body>
+      <body>  
         {!isPrivateRoute && <GuestHeader/>}
         {children}
-        {!isPrivateRoute &&  <Footer/>}
+          {!isPrivateRoute && <Footer />}
       </body>
     </html>
   );

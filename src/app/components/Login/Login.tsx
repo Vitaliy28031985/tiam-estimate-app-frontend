@@ -2,7 +2,7 @@
 import { ExclamationCircleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import React, { useState } from "react";
 import { useForm, Resolver } from "react-hook-form";
-import { loginApi } from '@/app/(pages)/API/auth'; 
+import { loginApi } from '@/app/(pages)/api/auth'; 
 
 import { useRouter } from 'next/navigation'
 
@@ -73,8 +73,8 @@ const resolver: Resolver<FormValues> = async (values) => {
 
 
 export default function Login() {
-    const [passwordVisible, setPasswordVisible] = useState(false);
-  
+  const [passwordVisible, setPasswordVisible] = useState(false);
+   
    const router = useRouter()
   
  const togglePasswordVisibility = () => {
@@ -95,11 +95,12 @@ export default function Login() {
          try {
            const response = await loginApi(data);
            if (response?.data?.token) {
-          localStorage.setItem('token', response.data.token);
+             localStorage.setItem('token', response.data.token);
+               router.push('/private');
            }
             if (response?.data?.refreshToken) {
                localStorage.setItem('refreshToken', response.data.refreshToken); 
-              router.push('/private');
+            
     }
            reset();
          } catch (error) {
