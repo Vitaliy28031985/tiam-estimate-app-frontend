@@ -8,6 +8,8 @@ import "../../styles/Review.css";
 import RatingStars from "@/app/UI/RatingStars/RaitingStars";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import formatDate from '../../utils/formatDate';
+import AddReviewModal from "../Modal/AddReviewModal";
+
 
 
 interface Reviews {
@@ -122,18 +124,11 @@ export default function Reviews() {
                 >
                     Залишити відгук
                 </button>
-                {isOpenAddReviewModal && (
-                    <dialog
-                        open={isOpenAddReviewModal}
-                        className=""
-                    >
-                        <form method="submit">
-                            Hello
-                        </form>
-                        <button onClick={handleCloseAddReviewModal}>Close</button>
-                    </dialog>
-                )}
             </div>
+            <AddReviewModal
+                isOpen={isOpenAddReviewModal}
+                onClose={handleCloseAddReviewModal}
+            />
         </section>
     );
 }
