@@ -53,13 +53,14 @@ export async function isLoginUser(): Promise<Boolean | null> {
   const user = await getCurrentUser();
   if (user) { 
     return true;
-  }
-  
-  const tokens = await refreshToken();
+  } else {
+     const tokens = await refreshToken();
   if (tokens) {
     localStorage.setItem('token', tokens.token);
     return true;
   } 
+  }
+  
   return false;
 }
 //

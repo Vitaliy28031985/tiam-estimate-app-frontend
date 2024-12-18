@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 import GuestHeader from "./components/Header/GuestHeader";
-import Footer from "./components/Footer/Footer";
 import { isLoginUser } from "./(pages)/api/user";
 import "./globals.css";
 
@@ -21,6 +20,7 @@ export default function RootLayout({
   const pathname = usePathname();
   const isPrivateRoute = pathname?.startsWith('/private');
 
+
  const router = useRouter()
     
       
@@ -28,8 +28,9 @@ export default function RootLayout({
       const fetchUser = async () => {
       const isLogin = await isLoginUser();
         if (isLogin) {
-          await router.push('/private');
-         
+          if (!isPrivateRoute) {
+             await router.push('/private');
+          }
         } 
      
     };
@@ -42,7 +43,6 @@ export default function RootLayout({
       <body>  
         {!isPrivateRoute && <GuestHeader/>}
         {children}
-          {!isPrivateRoute && <Footer />}
       </body>
     </html>
   );
