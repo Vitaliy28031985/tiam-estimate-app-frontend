@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from "react";
-import { usePathname, useRouter } from 'next/navigation';
-import { isLoginUser } from "../API/user";
+import { useRouter } from 'next/navigation';
+import { isLoginUser } from "../api/user";
 import Header from "@/app/components/Header/Header";
 import "../../globals.css";
 
@@ -12,21 +12,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const isExcludedRoute = ['/login', '/register', '/'].includes(pathname);
+  const router = useRouter()
 
       useEffect(() => {
-        const fetchUser = async () => {
-          if (!isExcludedRoute) {
-            return;
-          } else {
-         const isLogin = await isLoginUser();
+    const fetchUser = async () => {
+     const isLogin = await isLoginUser();
         if (!isLogin) {
-        await router.push('/');
-        }     
-       }
-    
+         router.push('/');
+        } 
     };
         fetchUser();
     
