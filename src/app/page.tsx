@@ -5,7 +5,7 @@ import ButtonDelete from './UI/Buttons/ButtonDelete';
 import ButtonPrint from './UI/Buttons/ButtonPrint';
 import { Metadata } from 'next';
 import Reviews from './components/home/Reviews';
-import IsLoginProvider from './Context/isLoginProvider';
+import Footer from './components/Footer/Footer';
 
 
 export const metadata: Metadata = {
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 export default function Home() {
 
   return (
+   <>
     <div className="bg-gray-0 pt-20">
       <div className='w-[1249px] ml-auto mr-auto container'>
         <MainSection />
@@ -26,7 +27,9 @@ export default function Home() {
         <ButtonPrint />
       </div>
 
-
-    </div>
+    
+      </div>
+    <Footer/>
+    </>
   );
 }

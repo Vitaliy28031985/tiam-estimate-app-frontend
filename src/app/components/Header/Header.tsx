@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from "react";
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '../../assets/Logo-1.svg';
@@ -12,6 +12,7 @@ import { logout } from "../../(pages)/api/auth";
 export default function Header() {
     const [user, setUser] = useState<User | null>(null);
     const router = useRouter();
+    const pathname = usePathname()
 
       useEffect(() => {
     const fetchUser = async () => {
@@ -44,13 +45,14 @@ export default function Header() {
               <Link href='/private'><Image src={logo} alt="logo" width={164} height={50} quality={100} /></Link>
               <ul className='flex items-center gap-24'>
                   <li>
-                      <Link className='font-normal text-xl text-black hover:text-blue-30 focus:text-blue-30' href="/private">Прайс</Link>
+                      <Link className={`font-normal text-xl text-black hover:text-blue-30 focus:text-blue-30 ${pathname === '/private' ? 'text-blue-30' : 'text-black'}`}
+                          href="/private">Прайс</Link>
                   </li>
                   <li>
-                      <Link className='font-normal text-xl text-black hover:text-blue-30 focus:text-blue-30' href="/private/estimates">Кошториси</Link>
+                      <Link className= {`font-normal text-xl text-black hover:text-blue-30 focus:text-blue-30 ${pathname === '/private/estimates' ? 'text-blue-30' : 'text-black'}`} href="/private/estimates">Кошториси</Link>
                   </li>
                   <li>
-                      <Link className='font-normal text-xl text-black hover:text-blue-30 focus:text-blue-30' href="/private/profile">Профіль</Link>
+                      <Link className={`font-normal text-xl text-black hover:text-blue-30 focus:text-blue-30 ${pathname === '/private/profile' ? 'text-blue-30' : 'text-black'}`} href="/private/profile">Профіль</Link>
                   </li>
               </ul> 
               <div onClick={logoutFunction} className="object-center w-[74px] h-[74px]">
