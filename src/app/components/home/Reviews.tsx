@@ -74,7 +74,7 @@ export default function Reviews() {
     const currentReviews = reviews.slice(currentPage * reviewPerPage, (currentPage + 1) * reviewPerPage);
 
     return (
-        <section>
+        <section id="reviews">
             <h2 className='text-5xl font-alternates font-bold text-black mb-[60px] w-[427px]'>Що говорять про нас люди</h2>
 
             <Swiper

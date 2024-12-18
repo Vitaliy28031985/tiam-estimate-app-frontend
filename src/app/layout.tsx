@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 import { getCurrentUser } from "./(pages)/API/user";
 import GuestHeader from "./components/Header/GuestHeader";
+import Footer from "./components/Footer/Footer";
 import "./globals.css";
 
 
@@ -45,8 +46,8 @@ export default function RootLayout({
     <html lang="uk">
       <body>
         {!isPrivateRoute && <GuestHeader/>}
-        
         {children}
+        {!isPrivateRoute &&  <Footer/>}
       </body>
     </html>
   );

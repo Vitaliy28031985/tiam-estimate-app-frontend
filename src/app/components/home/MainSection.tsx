@@ -6,7 +6,7 @@ import homeTwo from '../../assets/home-2.png';
 import homeTree from '../../assets/home-3.png'
 export default function MainSection() {
   return (
-    <section className='flex gap-24 items-center'>
+    <section id='main' className='flex gap-24 items-center'>
         <div className=''>
           <p className='text-2xl font-semibold text-blue-20 mb-3'>Estimate app</p>
           <h3 className='text-5xl font-alternates font-semibold text-gray-30 mb-3 '>
