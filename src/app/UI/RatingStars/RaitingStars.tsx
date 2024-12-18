@@ -1,7 +1,5 @@
-
 import { FaStar } from "react-icons/fa";
 import { FC } from 'react';
-
 
 interface RatingStarsProps {
     rating: number;
@@ -13,7 +11,7 @@ const RatingStars: FC<RatingStarsProps> = ({ rating, maxStars = 5 }) => {
     const emptyStars = maxStars - fullStars;
 
     return (
-        <div className="flex gap-1">
+        <div className="flex gap-1 mb-3">
             {Array.from({ length: fullStars }, (_, index) => (
                 <FaStar key={`full-${index}`} className="fill-[#FCD34D] w-6 h-6" />
             ))}
