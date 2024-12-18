@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ExclamationCircleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { useForm, Resolver } from "react-hook-form"; 
 import Checkbox from "@/app/UI/Inputs/Checkbox";
-import { registerApi } from "@/app/(pages)/API/auth";
+import { registerApi } from "@/app/(pages)/api/auth";
 
 
 type FormValues = {
@@ -301,3 +301,4 @@ export default function RegisterForm() {
             </div>
     )
 }
+//

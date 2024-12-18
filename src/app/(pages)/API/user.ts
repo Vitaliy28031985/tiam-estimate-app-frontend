@@ -6,11 +6,9 @@ export async function getCurrentUser(): Promise<User | null> {
   
   const token = localStorage.getItem('token');
   if (!token) {
-    // console.error('Token not found in localStorage');
     return null;
-  }
-
-  try {
+  } else {
+    try {
     const response = await axios({
       method: 'get',
       url: `${BASE_URL}api/user/current`,
@@ -24,4 +22,44 @@ export async function getCurrentUser(): Promise<User | null> {
     console.error('Error during request:', error);
     return null;
   }
+  }  
 }
+
+export async function refreshToken(): Promise<{ token: string; refreshToken: string} | null> {
+  
+  const token = localStorage.getItem('refreshToken');
+  if (!token) {
+    return null;
+  } else {
+    try {
+    const response = await axios({
+      method: 'get',
+      url: `${BASE_URL}api/auth/refresh/current`,
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+      const data: { token: string; refreshToken: string} = response.data;
+    return data;
+  } catch (error) {
+    console.error('Error during request:', error);
+    return null;
+  }
+  }  
+}
+
+
+export async function isLoginUser(): Promise<Boolean | null> {
+  const user = await getCurrentUser();
+  if (user) { 
+    return true;
+  }
+  
+  const tokens = await refreshToken();
+  if (tokens) {
+    localStorage.setItem('token', tokens.token);
+    return true;
+  } 
+  return false;
+}
+//
