@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from "react";
 import { usePathname, useRouter } from 'next/navigation';
-import { isLoginUser } from "../api/user";
+import { isLoginUser } from "../API/user";
 import Header from "@/app/components/Header/Header";
 import "../../globals.css";
 
